@@ -14,7 +14,73 @@
   - use decisões para comparar os três números
   - os números podem ser informados em qualquer ordem
 -------------------------------------------------------------------*/
+Aqui está a solução para o Exercício 2.6. Para descobrir a ordem, o jeito mais direto usando apenas a estrutura de decisão (if/else) é testar qual número é o maior de todos e, dentro dessa decisão, verificar qual dos dois restantes é o do meio e qual é o menor.
+
+        Como são 3 números, existem apenas 6 combinações possíveis de ordem.
+
+        Java
+
+
+import java.util.Scanner;
+
 public class Ex02_6 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 1. Solicita os três números
+        System.out.print("Informe o primeiro número: ");
+        double n1 = scanner.nextDouble();
+
+        System.out.print("Informe o segundo número: ");
+        double n2 = scanner.nextDouble();
+
+        System.out.print("Informe o terceiro número: ");
+        double n3 = scanner.nextDouble();
+
+        // Variáveis para guardar os resultados na ordem correta
+        double maior, meio, menor;
+
+        // 2. Comparações para definir a ordem
+        // Se n1 for o maior de todos
+        if (n1 >= n2 && n1 >= n3) {
+            maior = n1;
+            if (n2 >= n3) {
+                meio = n2;
+                menor = n3;
+            } else {
+                meio = n3;
+                menor = n2;
+            }
+        }
+        // Se n2 for o maior de todos
+        else if (n2 >= n1 && n2 >= n3) {
+            maior = n2;
+            if (n1 >= n3) {
+                meio = n1;
+                menor = n3;
+            } else {
+                meio = n3;
+                menor = n1;
+            }
+        }
+        // Se n3 for o maior de todos
+        else {
+            maior = n3;
+            if (n1 >= n2) {
+                meio = n1;
+                menor = n2;
+            } else {
+                meio = n2;
+                menor = n1;
+            }
+        }
+
+        // 3. Imprime os valores em ordem decrescente
+        System.out.println("\nOrdem dos números:");
+        System.out.println("Maior: " + maior);
+        System.out.println("Do meio: " + meio);
+        System.out.println("Menor: " + menor);
+
+        scanner.close();
     }
 }
