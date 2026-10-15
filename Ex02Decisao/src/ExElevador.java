@@ -1,51 +1,48 @@
 import java.util.Scanner;
 
-public class ExMediaIdades {
+public class ExElevador {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int somaIdadeEst = 0, qtdEst = 0;
-        int somaIdadeNaoEst = 0, qtdNaoEst = 0;
-        String continuar;
+        // Constantes sugeridas (usei 5 pessoas conforme o texto principal, mas você pode mudar para 3)
+        final int MAX_PESSOAS = 5;
+        final double MAX_PESO = 300.0;
 
-        System.out.println("--- CADASTRO DE PESSOAS ---");
+        int qtdPessoas = 0;
+        double pesoTotal = 0.0;
+        String temFila = "s";
 
-        do {
-            System.out.print("Informe a idade: ");
-            int idade = scanner.nextInt();
+        System.out.println("--- CONTROLE DO ELEVADOR ---");
+        System.out.println("Limite: " + MAX_PESSOAS + " pessoas ou " + MAX_PESO + " kg.\n");
 
-            System.out.print("É estudante? (s/n): ");
-            String estudante = scanner.next();
+        // Repete enquanto houver lugar, não exceder o limite de pessoas e tiver gente na fila
+        while (qtdPessoas < MAX_PESSOAS && temFila.equalsIgnoreCase("s")) {
 
-            if (estudante.equalsIgnoreCase("s")) {
-                somaIdadeEst += idade;
-                qtdEst++;
-            } else {
-                somaIdadeNaoEst += idade;
-                qtdNaoEst++;
+            System.out.print("Qual o peso da próxima pessoa (kg)? ");
+            double pesoDaPessoa = scanner.nextDouble();
+
+            // Verifica se a entrada dessa pessoa vai ultrapassar o limite de peso
+            if (pesoTotal + pesoDaPessoa > MAX_PESO) {
+                System.out.println("Limite de peso seria excedido! Essa pessoa não pode entrar.");
+                break; // Interrompe a entrada de pessoas e faz o elevador subir
             }
 
-            System.out.print("Deseja cadastrar outra pessoa? (s/n): ");
-            continuar = scanner.next();
-            System.out.println("---------------------------");
+            // Se chegou aqui, a pessoa pode entrar
+            qtdPessoas++;
+            pesoTotal += pesoDaPessoa;
 
-        } while (continuar.equalsIgnoreCase("s"));
+            System.out.println("Status: " + qtdPessoas + " pessoa(s) e " + pesoTotal + " kg no elevador.");
 
-        // Exibindo os resultados (com verificação para evitar divisão por zero)
-        System.out.println("\n--- RESULTADOS ---");
-        if (qtdEst > 0) {
-            double mediaEst = (double) somaIdadeEst / qtdEst;
-            System.out.println("Média de idade dos estudantes: " + mediaEst);
-        } else {
-            System.out.println("Nenhum estudante cadastrado.");
+            // Só pergunta se tem mais alguém na fila se ainda tiver espaço para pessoas
+            if (qtdPessoas < MAX_PESSOAS) {
+                System.out.print("Ainda tem pessoas na fila? (s/n): ");
+                temFila = scanner.next();
+                System.out.println("-");
+            }
         }
 
-        if (qtdNaoEst > 0) {
-            double mediaNaoEst = (double) somaIdadeNaoEst / qtdNaoEst;
-            System.out.println("Média de idade dos não estudantes: " + mediaNaoEst);
-        } else {
-            System.out.println("Nenhum não estudante cadastrado.");
-        }
+        // Resultado final
+        System.out.println("\nSubindo com " + qtdPessoas + " pessoas e " + pesoTotal + " kg.");
 
         scanner.close();
     }
