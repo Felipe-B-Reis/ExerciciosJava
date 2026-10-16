@@ -14,12 +14,6 @@
   - use decisões para comparar os três números
   - os números podem ser informados em qualquer ordem
 -------------------------------------------------------------------*/
-Aqui está a solução para o Exercício 2.6. Para descobrir a ordem, o jeito mais direto usando apenas a estrutura de decisão (if/else) é testar qual número é o maior de todos e, dentro dessa decisão, verificar qual dos dois restantes é o do meio e qual é o menor.
-
-        Como são 3 números, existem apenas 6 combinações possíveis de ordem.
-
-        Java
-
 
 import java.util.Scanner;
 
