@@ -4,7 +4,7 @@ public class ExElevador {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Constantes sugeridas (usei 5 pessoas conforme o texto principal, mas você pode mudar para 3)
+        // Constantes sugeridas
         final int MAX_PESSOAS = 5;
         final double MAX_PESO = 300.0;
 
