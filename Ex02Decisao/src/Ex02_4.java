@@ -25,8 +25,6 @@
     - depois de terminar, conceda desconto de 10% para pessoas 
       com mais de 60 anos (mas não acumula se for estudante)
 -------------------------------------------------------------------*/
-Java
-
 
 import java.util.Scanner;
 
